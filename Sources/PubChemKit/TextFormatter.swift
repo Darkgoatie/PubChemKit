@@ -1,6 +1,6 @@
 import Foundation
 
-/// Turns a `LookupResult` into plain text, for example as a tool answer for a language model.
+/// Turns a `LookupResult` into plain text.
 public struct TextFormatter: Sendable {
     public var maxStatements: Int
     /// Appended after the source line. Empty by default.

@@ -31,7 +31,7 @@ let result = try await client.lookup("50-78-2", includeDescription: true, includ
 print(result.properties)          // melting point, boiling point, density, ...
 print(result.hazards?.signalWord) // "Danger"
 
-// Plain text, for example as a tool answer for a language model
+// Plain text
 print(TextFormatter().render(result))
 ```
 
