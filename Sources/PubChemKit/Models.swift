@@ -93,6 +93,17 @@ public struct LookupResult: Equatable, Sendable {
     public let hazards: Hazards?
     public let requestedDescription: Bool
     public let requestedHazards: Bool
+
+    public init(compound: Compound, otherMatches: [Compound] = [], properties: [PropertyValue] = [], description: String? = nil, hazards: Hazards? = nil,
+                requestedDescription: Bool = false, requestedHazards: Bool = false) {
+        self.compound = compound
+        self.otherMatches = otherMatches
+        self.properties = properties
+        self.description = description
+        self.hazards = hazards
+        self.requestedDescription = requestedDescription
+        self.requestedHazards = requestedHazards
+    }
 }
 
 public enum PubChemError: Error, Equatable, Sendable {

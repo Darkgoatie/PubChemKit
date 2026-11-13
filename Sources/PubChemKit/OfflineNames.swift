@@ -36,7 +36,8 @@ public enum OfflineNames {
     /// The number of distinct names in the table.
     public static var count: Int { index.count }
 
-    static let table = #"""
+    /// The raw table: one line per compound, names separated by `|`, then ` = ` and the SMILES.
+    public static let table = #"""
 Methane|Methan = C
 Ethane|Ethan = CC
 Propane|Propan = CCC

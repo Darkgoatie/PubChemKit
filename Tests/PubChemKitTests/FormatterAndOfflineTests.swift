@@ -47,3 +47,12 @@ import Foundation
         }
     }
 }
+
+@Suite struct FormatterLimitTests {
+    @Test func otherMatchesAreCapped() {
+        func c(_ i: Int) -> Compound { Compound(cid: i, title: "C\(i)", iupacName: "", formula: "F\(i)", molecularWeight: "", smiles: "") }
+        let r = LookupResult(compound: c(0), otherMatches: [c(1), c(2), c(3), c(4)])
+        #expect(TextFormatter().render(r).contains("Other matches: C1 (F1); C2 (F2); C3 (F3)\n"))
+        #expect(TextFormatter(maxOtherMatches: 1).render(r).contains("Other matches: C1 (F1)\n"))
+    }
+}

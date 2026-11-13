@@ -3,11 +3,14 @@ import Foundation
 /// Turns a `LookupResult` into plain text.
 public struct TextFormatter: Sendable {
     public var maxStatements: Int
+    /// How many other matches are listed.
+    public var maxOtherMatches: Int
     /// Appended after the source line. Empty by default.
     public var note: String
 
-    public init(maxStatements: Int = 8, note: String = "") {
+    public init(maxStatements: Int = 8, maxOtherMatches: Int = 3, note: String = "") {
         self.maxStatements = maxStatements
+        self.maxOtherMatches = maxOtherMatches
         self.note = note
     }
 
@@ -34,7 +37,7 @@ public struct TextFormatter: Sendable {
                 lines.append("Hazards: PubChem lists none for this compound.")
             }
         }
-        if !r.otherMatches.isEmpty { lines.append("Other matches: " + r.otherMatches.map { "\($0.title) (\($0.formula))" }.joined(separator: "; ")) }
+        if !r.otherMatches.isEmpty { lines.append("Other matches: " + r.otherMatches.prefix(maxOtherMatches).map { "\($0.title) (\($0.formula))" }.joined(separator: "; ")) }
         lines.append("Source: \(m.pageURL.absoluteString)")
         if !note.isEmpty { lines.append(note) }
         return lines.joined(separator: "\n")
